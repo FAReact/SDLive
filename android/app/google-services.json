@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "679674460201",
+    "firebase_url": "https://liveoh-13821.firebaseio.com",
+    "project_id": "liveoh-13821",
+    "storage_bucket": "liveoh-13821.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679674460201:android:7ad85acf331e1e72e30438",
+        "android_client_info": {
+          "package_name": "com.sdlive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679674460201-ae4j3affcfm4lc0smvrnt7g9h941lkbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9W0N9C8C4G4nA9oIaaqaimpu0ttYIBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679674460201-ae4j3affcfm4lc0smvrnt7g9h941lkbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
