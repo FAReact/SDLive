@@ -99,14 +99,19 @@ class MyEvent extends React.Component {
 
     }
     componentDidMount() {
-        this.props.getEvent();
-    }
+        this.sub = this.props.navigation.addListener('didFocus', () => {
+            this.props.getEvent();
+        })
 
+    }
+    componentWillUnmount() {
+        if (this.sub) this.sub.remove()
+    }
     componentWillReceiveProps() {
 
     }
     onDelectItem(item) {
-console.log(item)
+        console.log(item)
         this.props.removeEvent(item.id)
     }
     render() {
