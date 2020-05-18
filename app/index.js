@@ -1,8 +1,8 @@
-import React, { Component ,useState} from 'react';
-import {StyleSheet, Text,View,FlatList} from 'react-native';
-import { createAppContainer } from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
-import {createDrawerNavigator} from 'react-navigation-drawer';
+import React, { Component, useState } from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import ReduxThunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -29,88 +29,98 @@ import Menu from './screens/menu/Menu'
 import ForgotPassword from './screens/forgot-password/ForgotPassword'
 import BookEvent from './screens/book-event/BookEvent'
 import GiftTicket from './screens/gift-ticket/GiftTicket'
-import  PurchaseCheer from './screens/purchase/PurchaseCheer'
+import PurchaseCheer from './screens/purchase/PurchaseCheer'
 import MyEarning from './screens/my-earning/MyEarning'
 import WithDrawEarning from './screens/withdraw-earning/WithDrawEarning'
 import Video from './screens/video-chat/Video'
 import Analytics from './screens/analytics/Analytics'
 import EditEvent from './screens/edit-event/EditEvent'
 import ViewEvent from './screens/view-event/index'
-const MainStack = createStackNavigator(
+const MainStack = createDrawerNavigator(
+    {
+        UserType: { screen: UserType },
+        SuccessPage: { screen: SuccessPage },
+        PaidEvent: { screen: PaidEvent },
+        Analytics: { screen: Analytics },
+        Video: { screen: Video },
+        ManagePayment: { screen: ManagePayment },
+        MyEvent: { screen: MyEvent },
+        EditEvent: { screen: EditEvent },
+        PerformProfile: { screen: PerformProfile },
+        ViewEvent: { screen: ViewEvent },
+        CreateEvent: { screen: CreateEvent },
+        Profile: { screen: Profile },
+        Chat: { screen: Chat },
+        EventFilter: { screen: EventFilter },
+        EventName: { screen: EventName },
+        PaymentMethod: { screen: PaymentMethod },
+        SuccessComponent: { screen: SuccessComponent },
+        Tickets: { screen: Tickets },
+        GiftTicket: { screen: GiftTicket },
+        BookEvent: { screen: BookEvent },
+        PurchaseCheer: { screen: PurchaseCheer },
+        MyEarning: { screen: MyEarning },
+        WithDrawEarning: { screen: WithDrawEarning },
 
-    {   
-       
-        SignUp:{screen:SignUp},
-        Login:{screen:Login},
-        ForgotPassword:{screen:ForgotPassword},
-        SuccessPage:{screen:SuccessPage},
-        UserType:{screen:UserType},
-        PaidEvent:{screen:PaidEvent},
-        Analytics:{screen:Analytics},
-        Video:{screen:Video},
-        ManagePayment:{screen:ManagePayment},
-        MyEvent:{screen:MyEvent},
-        EditEvent:{screen:EditEvent},
-        PerformProfile:{screen:PerformProfile},
-        ViewEvent:{screen:ViewEvent},
-        CreateEvent:{screen:CreateEvent},
-        Profile:{screen:Profile},
-        Chat:{screen:Chat},
-        EventFilter:{screen:EventFilter},
-        EventName:{screen:EventName},    
-        PaymentMethod:{screen:PaymentMethod},
-        SuccessComponent:{screen:SuccessComponent},
-        Tickets:{screen:Tickets},
-        GiftTicket:{screen:GiftTicket},
-        BookEvent:{screen:BookEvent},
-        PurchaseCheer:{screen:PurchaseCheer},
-        MyEarning:{screen:MyEarning},
-        WithDrawEarning:{screen:WithDrawEarning},
-      
     },
     {
-        defaultNavigationOptions:({navigation})=>{
-            return{
-                header:null
-            }
+        drawerWidth: Dimensions.deviceWidth * 0.8,
+        contentComponent: Menu,
+        defaultNavigationOptions: {
+            drawerLockMode: 'locked-open',
+
         }
     }
 )
 
-const RootStack = createDrawerNavigator(
+const AuthStack = createStackNavigator(
     {
-        MainStack:{
-            screen:MainStack,
-            defaultNavigationOptions:{
-                drawerLockMode: 'locked-open',
+        SignUp: { screen: SignUp },
+        Login: { screen: Login },
+        ForgotPassword: { screen: ForgotPassword },
 
-            }
-            
-        }
     },
     {
-        drawerWidth: Dimensions.deviceWidth*0.8,
-        contentComponent: Menu
-      }
-   
+        defaultNavigationOptions: ({ navigation }) => {
+            return {
+                header: null
+            }
+        }
+    }
+
+)
+const RootStack = createSwitchNavigator(
+    {
+        Auth: AuthStack,
+        Main: MainStack,
+
+    },
+    {
+        defaultNavigationOptions: ({ navigation }) => {
+            return {
+                header: null
+            }
+        }
+    }
+
 )
 
 
 
-const AppMain = ()=>{
-  const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
-  const Apps=createAppContainer(RootStack)
-    
-    return(
+const AppMain = () => {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
+    const Apps = createAppContainer(RootStack)
 
-     <Provider store={store}>
-       <Apps
-        ref={navigatorRef => {
-            NavigationService.setTopLevelNavigator(navigatorRef)
-          }}
-        />
-     </Provider>
-       
+    return (
+
+        <Provider store={store}>
+            <Apps
+                ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef)
+                }}
+            />
+        </Provider>
+
     )
 
 }
