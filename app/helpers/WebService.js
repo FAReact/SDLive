@@ -47,6 +47,8 @@ function WService() {
   }
 
   WService.prototype.removeEvent = function(id){
-    return NetworkHelper.requestPost(this.makeUrl(`/event/delete//${id}`))
+    console.log("delete id")
+    console.log(id)
+    return NetworkHelper.requestPost(this.makeUrl(`/event/delete/${id}`))
   }
   module.exports = WService
