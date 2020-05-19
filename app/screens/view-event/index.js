@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../redux/action.js'
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, Linking } from 'react-native'
 import { Icon } from 'native-base'
 import Header from '../../components/Header'
 import styles from './styles'
@@ -21,7 +21,14 @@ class ViewEvent extends React.Component {
         }
     }
 
-    componentDidMount() {
+    redirect = (link) => {
+        link && Linking.canOpenURL(link).then(supported => {
+            if (supported) {
+              Linking.openURL(link);
+            } else {
+              console.log("Don't know how to open URI: " + link);
+            }
+          });
     }
 
     render() {
@@ -49,11 +56,11 @@ class ViewEvent extends React.Component {
                         <View style={styles.socialView}>
                             <Text style={styles.socialTitle}>SOCIAL SHARE</Text>
                             <View style={styles.socialIconView}>
-                                <Icon name='facebook-with-circle' type='Entypo' style={styles.socialIcon} />
-                                <Icon name='google--with-circle' type='Entypo' style={styles.socialIcon} />
-                                <Icon name='linkedin-with-circle' type='Entypo' style={styles.socialIcon} />
-                                <Icon name='twitter-with-circle' type='Entypo' style={styles.socialIcon} />
-                                <Icon name='instagram-with-circle' type='Entypo' style={styles.socialIcon} />
+                                <Icon name='facebook-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.facebook)}/>
+                                <Icon name='google--with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.email)}/>
+                                <Icon name='linkedin-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.facebook)}/>
+                                <Icon name='twitter-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.twitter)}/>
+                                <Icon name='instagram-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.instagram)}/>
                             </View>
 
                         </View>
