@@ -22,7 +22,6 @@ class ViewEvent extends React.Component {
     }
 
     componentDidMount() {
-        alert(JSON.stringify(this.props.UserInfo))
     }
 
     render() {
