@@ -38,24 +38,42 @@ const socials=[
         path:'http;//www.Instagram.com/profilename'
     }
 ]
+const getDateFromString = (time) => {
 
+    var date = time.substr(0, time.indexOf(' '));
+    return date
+}
+const getTimeFromString = (time) => {
+    var Time = time.substr(time.indexOf(' ') + 1)
+    return Time
+}
+const createFormData = (body) => {
+    const data = new FormData();
+
+    Object.keys(body).forEach(key => {
+        data.append(key, body[key]);
+    });
+
+    return data;
+};
 class CreateEvent extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            id:props.navigation.getParam('event_id'),
-            name:props.navigation.getParam('event_name'),
+            id:'',
+            name:'',
             date:new Date(),
-            description:props.navigation.getParam('description'),
+            description:'',
             time:'00:00',
-            photo:{},
+            photo:null,
             categoryID:1,
-            tailer:{},
+            tailer:null,
             country:'',
             ticketNo:props.navigation.getParam('ticketNo'),
             price:props.navigation.getParam('price'),
             token:'',
-            categories:[]
+            categories:[],
+            item:this.props.navigation.getParam('item')
         }
     }
    
@@ -124,34 +142,38 @@ class CreateEvent extends React.Component{
     }
     createEvent = () =>{
         const {id,name,date,description,time,photo,categoryID,tailer,country,ticketNo,price,token} =this.state
-        const date_time = `${date.toString()} ${time}`
-        let data = new FormData()
-        data.append('name',name)
-        data.append('category_id',categoryID)
-        data.append('description',description)
-        data.append('time',date_time)
-        data.append('ticket_count',ticketNo)
-        data.append('price',price)
-        data.append('image',photo)
-        data.append('trailer',tailer)
+        const date_time = `${date} ${time}`
+        let data = {
+            name,
+            category_id: categoryID,
+            description,
+            country,
+            ticket_count: ticketNo,
+            time: date_time,
+            price,
+            image: photo,
+            tailer
+        }
 
-        axios.post(`${ENDPOINT}/event/create/${id}`,data,{
+        axios({
+            url:`${ENDPOINT}/event/create/${id}`,
+            data: createFormData(data),
+            method: 'post',
             headers: {
-                'content-type': 'multipart/form-data',
-                'authorization':`Bearer ${token}`
+                'Content-Type': 'multipart/form-data',
             },
         })
-        .then(res =>{
-            console.log('success',res)
-            alert('Your event updated successfully!')
-        })
-        .catch(error=>{
-            console.log('error',error)
-            alert('Network issue! please try later again.')
-        })
+            .then(res => {
+                console.log('success', res)
+                alert('Your event updated successfully!')
+            })
+            .catch(error => {
+                console.log('error', error)
+                alert('Network issue! please try later again.')
+            })
     }
     render(){
-        const {name,date,description,time,photo,categoryID,tailer,country,ticketNo,price,categories} =this.state
+        const {name,date,description,time,photo,categoryID,tailer,country,ticketNo,price,categories,item} =this.state
         console.log(date)
         return(
             <View>
@@ -162,7 +184,7 @@ class CreateEvent extends React.Component{
                                 <View style={styles.profileEmailView}>
                                     <TextInput
                                       style={{padding:5}}
-                                      defaultValue={name}
+                                      defaultValue={item.name}
                                       placeholder="Enter Event Name"
                                       onChangeText={(name)=>this.setState({name:name})}
                                     />
@@ -175,7 +197,7 @@ class CreateEvent extends React.Component{
                                   <View style={styles.dateView}>
                                     <DatePicker
                                         style={{width: '100%'}}
-                                        date={date}
+                                        date={getDateFromString(item.time)}
                                         onDateChange={(value)=>this.onSetDate(value)}
                                         confirmBtnText="Confirm"
                                         cancelBtnText="Cancel"
@@ -215,7 +237,7 @@ class CreateEvent extends React.Component{
                                     <TextInput
                                         style={{ height: 100,color:'black',justifyContent:'flex-start', borderColor: 'black', borderWidth: 1 ,padding:5,borderRadius:10}}
                                         onChangeText={text =>this.onChangeText(text)}
-                                        value={description}
+                                        defaultValue={item.description}
                                         textAlignVertical='top'
                                         multiline
                                         numberOfLines={4}
@@ -260,7 +282,7 @@ class CreateEvent extends React.Component{
                                    placeholder="No. of Tickets"
                                    keyboardType='numeric'
                                    style={{padding:3}}
-                                   defaultValue={ticketNo}
+                                   defaultValue={item.ticket_count}
                                    onChangeText={(value)=>this.setState({ticketNo:value})}
                                   />
                                 </View>
@@ -270,7 +292,7 @@ class CreateEvent extends React.Component{
                                         <TextInput
                                         style={{padding:3}}
                                         placeholder="Price"
-                                        defaultValue={price}
+                                        defaultValue={item.price}
                                         keyboardType='numeric'
                                         onChangeText={(value)=>this.setState({price:Number(value)})}
                                         />
