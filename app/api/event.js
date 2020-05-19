@@ -34,3 +34,13 @@ export const getEvent = () =>{
     })
 
 }
+
+export const removeEvent =(id) =>{
+  
+  return new Promise((resolve,reject)=>{
+      wservice.removeEvent(id).then(response=>{
+          resolve(response)
+      })
+      .catch(reject)
+  })
+}

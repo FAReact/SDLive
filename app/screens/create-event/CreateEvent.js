@@ -134,7 +134,7 @@ class CreateEvent extends React.Component {
     }
     createEvent = () => {
         const { name, date, description, time, photo, categoryID, tailer, country, ticketNo, price, token } = this.state
-        const date_time = `${date.toString()} ${time}`
+        const date_time = `${date} ${time}`
         let data = {
             name,
             category_id: categoryID,
@@ -146,7 +146,6 @@ class CreateEvent extends React.Component {
             tailer
         }
 
-        console.log(data);
         axios({
             url: ENDPOINT_EVENT,
             data: createFormData(data),

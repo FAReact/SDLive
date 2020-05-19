@@ -35,10 +35,13 @@ export const getEvent = () =>{
 }
 
 // remove Event Action
-
 export const removeEvent =(id) =>{
-   
     return dispatch =>{
-        dispatch ({type:ActionTypes.REMOVE_EVENT,payload:id})
+        Services.removeEvent(id).then(response=>{
+            dispatch ({type:ActionTypes.REMOVE_EVENT,payload:id})
+        })
+        .catch(error=>{
+            console.log(error)
+        })
     }
 }
