@@ -76,7 +76,7 @@ class CreateEvent extends React.Component{
             item:this.props.navigation.getParam('item')
         }
     }
-   
+   // edit page
     componentDidMount() {
         AsyncStorage.getItem('token').then((token) => {
             if(token){
