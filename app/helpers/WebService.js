@@ -45,4 +45,8 @@ function WService() {
   WService.prototype.sendTicketGift = function(event_id,receiver_email,count){
     return NetworkHelper.requestPost(this.makeUrl('/ticket/send_gift'),{event_id,receiver_email,count})
   }
+
+  WService.prototype.removeEvent = function(id){
+    return NetworkHelper.requestPost(this.makeUrl(`/event/delete//${id}`))
+  }
   module.exports = WService
