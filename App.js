@@ -9,8 +9,5 @@ class App extends Component {
   }
 }
  
-
-
-/// merge test
 export default App;
 
