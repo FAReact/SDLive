@@ -15,8 +15,8 @@ const validemail = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Uername should be email format.' : undefined
 const Login = (props)=>{
     const [loginInfo,setLoginInfo]=useState({
-        email:'',
-        password:''
+        email:'Hey@gmail.com',
+        password:'12345678'
     })
     const {email, password}=loginInfo
     // console.log(props)
