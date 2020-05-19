@@ -96,7 +96,20 @@ class Video extends Component {
       });
     });
     RtcEngine.joinChannel(this.state.channelName, this.state.uid);  //Join Channel
-    RtcEngine.enableAudio();                                        //Enable the audio
+    RtcEngine.enableAudio();    //Enable the audio
+   var groupRef = db.collection('groupChat').doc('JeYlHn6A0C8bpnhxkKjF').collection('performMsg').doc('XhSzjf9lSAjC5SOl6gkx');
+    var getDoc = groupRef.get()
+      .then(doc => {
+        if (!doc.exists) {
+          console.log('No such document!');
+        } else {
+          console.log('Document data:', doc.data());
+        }
+      })
+      .catch(err => {
+        console.log('Error getting document', err);
+      });
+
   }
   /**
   * @name toggleAudio
@@ -179,20 +192,6 @@ class Video extends Component {
     NavigationService.goBack()
   }
   render() {
-  
-    var groupRef = db.collection('groupChat').doc('JeYlHn6A0C8bpnhxkKjF').collection('performMsg').doc('XhSzjf9lSAjC5SOl6gkx');
-    var getDoc = groupRef.get()
-      .then(doc => {
-        if (!doc.exists) {
-          console.log('No such document!');
-        } else {
-          console.log('Document data:', doc.data());
-        }
-      })
-      .catch(err => {
-        console.log('Error getting document', err);
-      });
-    
   
     return (
         <View 

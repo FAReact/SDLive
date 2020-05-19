@@ -100,7 +100,7 @@ const Menu = (props)=>{
                <Image style={styles.imageLogo} source={Images.Logo}/>
             </View>
             <View style={styles.logoTitleArea}>
-              <Image style={styles.imageSDLive} source={Images.SDLive}/>
+              {/* <Image style={styles.imageSDLive} source={Images.SDLive}/> */}
               <Text style={styles.logoTitle}>{Texts.logoTitle}</Text>
             </View>
             <View style={styles.loginInfoArea}>

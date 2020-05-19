@@ -101,7 +101,7 @@ messageBack:{
 },
 messageInnerBack:{
     minWidth:'70%',
-    backgroundColor:'#4c4b4c80',
+    // backgroundColor:'#4c4b4c80',
     marginVertical:8, 
     borderRadius:40,
     padding:5, 
