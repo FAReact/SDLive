@@ -60,8 +60,7 @@ const MainStack = createDrawerNavigator(
         BookEvent: { screen: BookEvent },
         PurchaseCheer: { screen: PurchaseCheer },
         MyEarning: { screen: MyEarning },
-        WithDrawEarning: { screen: WithDrawEarning },
-
+        WithDrawEarning: {screen: WithDrawEarning},
     },
     {
         drawerWidth: Dimensions.deviceWidth * 0.8,
@@ -78,7 +77,6 @@ const AuthStack = createStackNavigator(
         SignUp: { screen: SignUp },
         Login: { screen: Login },
         ForgotPassword: { screen: ForgotPassword },
-
     },
     {
         defaultNavigationOptions: ({ navigation }) => {
@@ -110,7 +108,6 @@ const RootStack = createSwitchNavigator(
 const AppMain = () => {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
     const Apps = createAppContainer(RootStack)
-
     return (
 
         <Provider store={store}>
@@ -122,7 +119,6 @@ const AppMain = () => {
         </Provider>
 
     )
-
 }
 
 export default AppMain;

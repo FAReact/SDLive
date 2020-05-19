@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -50,23 +50,24 @@ const socials = [
 
 const Profile = (props) => {
 
-    const [name, setName] = useState('JOHDE');
-    const [email, setEmail] = useState('');
+    const [name, setName] = useState(props.UserInfo.profile.user.name !==null?props.UserInfo.profile.user.name:'');
+    const [email, setEmail] = useState(props.UserInfo.profile.user.email !==null?props.UserInfo.profile.user.email:'');
     const [password, setPassword] = useState('');
     const [Rpassword, setRpassword] = useState('');
-    const [bio, setBio] = useState('');
+    const [bio, setBio] = useState(props.UserInfo.profile.user.bio !==null?props.UserInfo.profile.user.bio:'');
     const [interest, setInterest] = useState([]);
-    const [facebook, setFacebook] = useState('');
-    const [twitter, setTwitter] = useState('');
-    const [instagram, setInstagram] = useState('');
+    const [facebook, setFacebook] = useState(props.UserInfo.profile.user.facebook !==null?props.UserInfo.profile.user.facebook:'');
+    const [twitter, setTwitter] = useState(props.UserInfo.profile.user.twitter !==null?props.UserInfo.profile.user.twitter:'');
+    const [instagram, setInstagram] = useState(props.UserInfo.profile.user.instagram !==null?props.UserInfo.profile.user.instagram:'');
     const [photo, setPhoto] = useState(null)
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('')
     const [banner, setBanner] = useState(null)
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(props.UserInfo.profile.user.birthday !==null?props.UserInfo.profile.user.birthday:'');
     const [avatar, setAvatar] = useState(null);
     const [modal, setModal] = useState(false);
-
+    
+    
 
     const openGalleryForProfile = () => {
         ImagePicker.openPicker({
@@ -81,7 +82,7 @@ const Profile = (props) => {
                 type: 'image/jpeg',
                 name: 'photo.jpg'
             })
-            setAvatar(path)
+            setAvatar(props.UserInfo.profile.user.profile_picture!==null?`${ENDPOINT}/${props.UserInfo.profile.user.profile_picture}`:path)
         });
     }
 
@@ -116,7 +117,7 @@ const Profile = (props) => {
     }
 
     const onSubmitProfile = async () => {
-
+       
         if (password.trim() !== Rpassword.trim()) return alert('Please match the password!')
 
         let data = {
@@ -151,12 +152,8 @@ const Profile = (props) => {
                 console.log('error', error)
                 alert('Network issue! please try later again.')
             })
-
-
         // props.profileUpgrade(name,photo,email,password,date,country,city,bio,interest,facebook,twitter,instagram,banner);
-
     }
-
     return (
         <View>
             <Header title="MANAGE PROFILE" toggleDrawer={props.navigation.toggleDrawer} />
@@ -181,7 +178,7 @@ const Profile = (props) => {
                         <View style={styles.profileEmailView}>
                             <TextInput
                                 style={{ padding: 0 }}
-                                placeholder="johdoe@gmail.com"
+                                defaultValue={email}
                                 onChangeText={(value) => setEmail(value)}
                             />
                         </View>
@@ -206,6 +203,7 @@ const Profile = (props) => {
                                 style={{ width: '100%' }}
                                 date={date}
                                 onDateChange={setDate}
+                                format={"YYYY-MM-DD"}
                                 confirmBtnText="Confirm"
                                 cancelBtnText="Cancel"
                                 showIcon={true}
@@ -366,9 +364,9 @@ const Profile = (props) => {
 
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = ({auth}) => {
     return {
-
+       UserInfo:auth
     }
 }
 const mapDispatchToProps = dispatch => {

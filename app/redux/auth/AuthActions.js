@@ -16,6 +16,7 @@ export const loginUser = (email, password) => {
           console.log("token")
           console.log(data.accessToken)
           AsyncStorage.setItem("token", data.accessToken)
+        
           loginUserSuccess(dispatch, data, email, password)
         })
         .catch((errMsg) => {
@@ -35,6 +36,9 @@ export const signUpUser =(name,email,birthday,user_type,password) =>{
             console.log("token")
             console.log(data.accessToken)
             AsyncStorage.setItem("token", data.accessToken)
+            // AsyncStorage.setItem("name", email)
+            // AsyncStorage.setItem("email", password)
+            // AsyncStorage.setItem("birthday", password)
             dispatch({type:ActionTypes.LOGIN_USER_SUCCESS,payload:data})
         })
         .catch((errMsg) => {

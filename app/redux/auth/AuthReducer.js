@@ -30,7 +30,7 @@ const defaultProfile = {
                 return {
                     ...state,
                     loginCompleted: true,
-                    // profile: action.payload.user,
+                    profile: action.payload,
                     // token: action.payload.token,
                 }
           case ActionTypes.LOGIN_USER_FAIL:

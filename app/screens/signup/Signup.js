@@ -71,14 +71,13 @@ const SignUp = (props)=>{
       }
 
     return(
-   
       <ScrollView style={styles.container}>
         <View style={styles.loginContainer}>
             <View style={styles.logoArea}>
                <Image style={styles.imageLogo} source={Images.Logo}/>
             </View>
             <View style={styles.logoTitleArea}>
-              <Image style={styles.imageSDLive} source={Images.SDLive}/>
+              {/* <Image style={styles.imageSDLive} source={Images.SDLive}/> */}
               <Text style={styles.logoTitle}>{Texts.logoTitle}</Text>
             </View>
             <View style={styles.loginInfoArea}>
