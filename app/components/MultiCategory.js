@@ -1,15 +1,15 @@
-import React,{useState,useEffect} from 'react'
-import { connect } from 'react-redux'
+import React,{useState,useEffect} from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {ActionCreators} from '../redux/action'
+import {ActionCreators} from '../redux/action';
 import RNPickerSelect from 'react-native-picker-select';
-import categorySelectStyles from './styles/categorySelectStyles'
-import {Icon} from 'native-base'
+import categorySelectStyles from './styles/categorySelectStyles';
+import {Icon} from 'native-base';
 
 const MultiCategory = (props) => {
   
     const convertItem = () =>{
-        let categories=[]
+        let categories=[];
         props.Data.data.categories.map(item=>{
             categories.push({
               label:item.name,
@@ -24,7 +24,7 @@ const MultiCategory = (props) => {
             onValueChange={(value) =>console.log(value)}
             placeholder={{
                 label: 'Select Category',
-                value: null,
+                value: null
               
               }}
               
@@ -33,12 +33,12 @@ const MultiCategory = (props) => {
                 ...categorySelectStyles,
                 iconContainer: {
                     top: 12,
-                    right: 518,
+                    right: 518
                   },
                   viewContainer:{
                       backgroundColor:'white',
                       borderRadius:40,
-                      paddingHorizontal:10,
+                      paddingHorizontal:10
                     
                   },       
                   placeholder:{

@@ -1,35 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../redux/action';
 import RNPickerSelect from 'react-native-picker-select';
-import pickerSelectStyles from './styles/pickerSelectStyles'
-import {Icon} from 'native-base'
+import pickerSelectStyles from './styles/pickerSelectStyles';
+import { Icon } from 'native-base';
 
 const MultiCountryPicker = (props) => {
 
-    
+    const convertItem = () => {
+        let countries = [];
+        props.Data.map(item => {
+            countries.push({
+                label: item.name,
+                value: item.id
+            })
+        })
+        return countries;
+    };
+
+    const defaultItem = () => {
+        let countries = convertItem()
+        return countries.find((element) => {
+            return element.value === props.defaultItem;
+        })
+    }
+
     return (
         <RNPickerSelect
-            onValueChange={(value) => props.onSetCountry(value)}
+            selectedValue={defaultItem()}
+            onValueChange={(value) => props.onGetCountryID(value)}
             placeholder={{
-                label: 'Select your country',
+                label: 'Select your Country',
                 value: null,
-              }}
-            
-            items={[
-                { label: 'United Kingdom', value: 'United Kingdom'},
-                { label: 'Russia', value: 'Russia' },
-                { label: 'France', value: 'France' },
-            ]}
+            }}
+            items={convertItem()}
             style={{
                 ...pickerSelectStyles,
                 iconContainer: {
                     top: 12,
                     right: 0,
-                  },
-                  placeholder:{
-                      color:'gray'
-                  }
-            }       
-            }
+                },
+                placeholder: {
+                    color: 'gray'
+                }
+            }}
             Icon={()=>{
                 return(
                     <Icon name="md-arrow-dropdown" type="Ionicons" style={{fontSize:25}}/>

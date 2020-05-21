@@ -1,14 +1,14 @@
-import React,{useState} from 'react'
-import {StyleSheet,View,Text,TouchableOpacity,ImageBackground,TextInput,ScrollView,Image,SafeAreaView} from 'react-native'
-import { connect } from 'react-redux'
+import React,{useState} from 'react';
+import {StyleSheet,View,Text,TouchableOpacity,ImageBackground,TextInput,ScrollView,Image,SafeAreaView} from 'react-native';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {ActionCreators} from '../../redux/action.js'
-import NavigationService from '../../navigation/NavigationService.js'
+import {ActionCreators} from '../../redux/action.js';
+import NavigationService from '../../navigation/NavigationService.js';
 import LinearGradient from 'react-native-linear-gradient';
-import {Screens} from '../../constants/index.js'
-import Images from '../../constants/image.js'
-import Texts from '../../constants/texts.js'
-import styles from './styles'
+import {Screens} from '../../constants/index.js';
+import Images from '../../constants/image.js';
+import Texts from '../../constants/texts.js';
+import styles from './styles';
 
 
 const validemail = value =>

@@ -92,7 +92,7 @@ const styles=StyleSheet.create({
     profileCountryCity:{
         width:Dimension.deviceWidth/2-40,
         borderBottomColor:'black',
-        borderBottomWidth:1,
+        borderBottomWidth:1
     },
     profileBioView:{
          marginTop:20
@@ -112,14 +112,14 @@ const styles=StyleSheet.create({
         textAlign: 'center',
         margin: 10,
         color: '#ffffff',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
       },
       restrictTitle:{
           color:Colors.grayTextColor
       },
       dateView:{
        width:'70%',
-       borderBottomWidth:1,
+       borderBottomWidth:1
       },
       timeView:{
        width:'30%',

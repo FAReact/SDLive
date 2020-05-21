@@ -10,7 +10,7 @@ import {Icon} from 'native-base';
 import NavigationService from '../../navigation/NavigationService'
 import Images from '../../constants/image'
 import styles from './styles'
-import {messages} from './data'
+import {messages,event} from './data'
 import LinearGradient from 'react-native-linear-gradient';
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
@@ -23,12 +23,6 @@ const {
   AudioScenarioDefault,
   Adaptative,
 } = Agora;                                        //Set defaults for Stream
-
-/**
- * performer type @hosted,@muti-user
- * user type @normal,@premium
- *
- */
 
 const ListItem=({_id, text, createdAt, name, avatar, sendTip})=>{
  
@@ -47,7 +41,7 @@ const ListItem=({_id, text, createdAt, name, avatar, sendTip})=>{
 
 
 
-class Video extends Component {
+class VIProom extends Component {
   constructor(props) {
     super(props);
     if (Platform.OS === 'android') {                    //Request required permissions from Android
@@ -59,7 +53,7 @@ class Video extends Component {
       peerIds: [],                                //Array for storing connected peers
       uid: Math.floor(Math.random() * 100),       //Generate a UID for local user
       appid: '93a35a04e47b4c09807a4a8358171faa',                    //Enter the App ID generated from the Agora Website
-      channelName:'Love',        //Channel Name for the current session
+      channelName:this.props.navigation.getParam('channelName'),        //Channel Name for the current session
       vidMute: false,                             //State variable for Video Mute
       audMute: false,                             //State variable for Audio Mute
       joinSucceed: false,  
@@ -81,6 +75,7 @@ class Video extends Component {
     };
     RtcEngine.init(config);                     //Initialize the RTC engine
   }
+
   componentDidMount() {
     RtcEngine.on('userJoined', (data) => {
       const { peerIds } = this.state;             //Get currrent peer IDs
@@ -310,4 +305,4 @@ let dimensions = {                                            //get dimensions o
 };
 
 
-export default Video;
+export default VIProom;

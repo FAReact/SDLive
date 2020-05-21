@@ -78,7 +78,7 @@ const SignUp = (props)=>{
             </View>
             <View style={styles.logoTitleArea}>
               {/* <Image style={styles.imageSDLive} source={Images.SDLive}/> */}
-              <Text style={styles.logoTitle}>{Texts.logoTitle}</Text>
+              {/* <Text style={styles.logoTitle}>{Texts.logoTitle}</Text> */}
             </View>
             <View style={styles.loginInfoArea}>
                 <View style={styles.textInputBackground}>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../redux/action'
+import { ActionCreators } from '../redux/action';
 import RNPickerSelect from 'react-native-picker-select';
-import pickerSelectStyles from './styles/pickerSelectStyles'
-import { Icon } from 'native-base'
+import pickerSelectStyles from './styles/pickerSelectStyles';
+import { Icon } from 'native-base';
 
 const MultiEventCategory = (props) => {
 
@@ -17,21 +17,21 @@ const MultiEventCategory = (props) => {
             })
         })
         return categories;
-    }
+    };
 
     const defaultItem = () => {
         let categories = convertItem()
         return categories.find((element) => {
             return element.value === props.defaultItem;
         })
-    }
+    };
 
     return (
         <RNPickerSelect
             selectedValue={defaultItem()}
             onValueChange={(value) => props.onGetCategoryID(value)}
             placeholder={{
-                label: 'Select your category',
+                label: 'Select Category',
                 value: null,
             }}
             items={convertItem()}
