@@ -1,6 +1,7 @@
 import Dimension from '../../constants/dimensions.js'
 import Colors from '../../constants/color.js'
 import {StyleSheet} from 'react-native'
+import dimensions from '../../constants/dimensions.js';
 
 const styles = StyleSheet.create({
     
@@ -54,7 +55,30 @@ const styles = StyleSheet.create({
     profileEmail:{
        color:Colors.grayTextColor,
     },
-
+    tab_control: {
+        width:Dimension.pro100,
+        height:50,
+        backgroundColor:'#e7e8e9',
+        justifyContent:'space-around',
+        alignItems:'center',
+        flexDirection:'row'
+    },
+    gift_view:{
+        position: 'absolute',
+        right: Dimension.px30,
+        alignItems: 'center'
+    },
+    gift_img:{
+        marginTop: 5,
+        width: 22,
+        height: 22
+    },
+    gift_text:{
+        color: '#E2247A',
+        fontSize: 8,
+        marginTop: 3
+    },
+   
     //card contents
     
     cardContainer:{

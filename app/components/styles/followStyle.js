@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
      },
      subscribe:{
          fontSize:13,
-         fontFamily:'FlanklinGothic',
+        //  fontFamily:'FlanklinGothic',
          color:Colors.grayTextColor,
      }
      

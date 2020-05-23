@@ -56,6 +56,7 @@ const MainStack = createDrawerNavigator(
          },
         EditEvent: { screen: EditEvent },
         PerformProfile: { screen: PerformProfile },
+        ReviewerProfile:{screen:ReviewerProfile},
         ViewEvent: { screen: ViewEvent },
         CreateEvent: { screen: CreateEvent },
         Profile: { screen: Profile },
@@ -83,7 +84,6 @@ const MainStack = createDrawerNavigator(
 
 const AuthStack = createStackNavigator(
     {
-        ReviewerProfile:{screen:ReviewerProfile},
         SignUp: { screen: SignUp },
         Login: { screen: Login },
         ForgotPassword: { screen: ForgotPassword },
