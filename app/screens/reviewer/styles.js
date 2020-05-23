@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
          height:25,       
     },
     profileImage:{
-       width:100,
-       height:100,
-       borderRadius:50,
-      
+        width:Dimension.px100,
+        height:Dimension.px100,
+        borderRadius:Dimension.px50,
     },
     profileViewArea:{
        marginTop:40,

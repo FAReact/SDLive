@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux'
 import {ActionCreators} from '../../redux/action.js'
 import {StyleSheet,View,Text,TouchableOpacity,ImageBackground,TextInput,ScrollView,Image,SafeAreaView} from 'react-native'
 import NavigationService from '../../navigation/NavigationService.js'
-import LinearGradient from 'react-native-linear-gradient';
 import {Screens} from '../../constants/index.js'
 import {Icon} from 'native-base'
 import Images from '../../constants/image.js'
@@ -59,7 +58,7 @@ const menuPerformlist=[
     },
     {
         title:'PROFILE',
-        path:'Profile'
+        path:'PerformProfile'
     },
     {
         title:'PAYMENT SETTING',
