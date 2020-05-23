@@ -30,6 +30,7 @@ const data=[
 const CardContent = ({item}) =>{
     return(
         <View>
+            <Image source={Images.Clapping}/>
            <Text style={{color:'black'}}>{item.title}</Text>
         </View>
     )

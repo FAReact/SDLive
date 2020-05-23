@@ -89,11 +89,6 @@ const MainStack = createDrawerNavigator(
 
 const AuthStack = createStackNavigator(
     {
-<<<<<<< Updated upstream
-=======
-        
-        
->>>>>>> Stashed changes
         SignUp: { screen: SignUp },
         Login: { screen: Login },
         ForgotPassword: { screen: ForgotPassword },
