@@ -10,7 +10,7 @@ import {Icon} from 'native-base';
 import NavigationService from '../../navigation/NavigationService'
 import Images from '../../constants/image'
 import styles from './styles'
-import {messages,event} from './data'
+import {messages,eventData} from './data'
 import LinearGradient from 'react-native-linear-gradient';
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
@@ -57,6 +57,7 @@ class VIProom extends Component {
       vidMute: false,                             //State variable for Video Mute
       audMute: false,                             //State variable for Audio Mute
       joinSucceed: false,  
+      event :eventData,
       commit:'',
       messages: messages, //State variable for storing success
     };
@@ -77,14 +78,20 @@ class VIProom extends Component {
   }
 
   componentDidMount() {
+    const {event} = this.state
     RtcEngine.on('userJoined', (data) => {
       const { peerIds } = this.state;             //Get currrent peer IDs
       if (peerIds.indexOf(data.uid) === -1) {     //If new user has joined
         this.setState({
           peerIds: [...peerIds, data.uid],        //add peer ID to state array
         });
+       
       }
     });
+
+
+    
+
     RtcEngine.on('userOffline', (data) => {       //If user leaves
       this.setState({
         peerIds: this.state.peerIds.filter(uid => uid !== data.uid), //remove peer ID from state array
@@ -179,11 +186,8 @@ class VIProom extends Component {
     var date = new Date().toString();
     if(type ==='performer'){
        db.collection('groupChat').doc(`chat-${channelName}-name-birthday`).collection('performMsg').doc(`chat-${date}`).set(payload);
-    }
-    else{
-      db.collection('groupChat').doc('new-city-id').set(data);
-    }
-   
+  
+       
   }
   handleSomeKindOfEvent = () => {
     this.explosion && this.explosion.start();

@@ -16,7 +16,7 @@ class PurchaseCheer extends React.Component{
         super(props)
         this.state={
              value:1,
-             headerTitle:'PURCHASE CHEER'
+             headerTitle:'GIFT CHEER'
         }
     }
     

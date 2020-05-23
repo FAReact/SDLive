@@ -36,17 +36,30 @@ import Video from './screens/video-chat/Video'
 import Analytics from './screens/analytics/Analytics'
 import EditEvent from './screens/edit-event/EditEvent'
 import ViewEvent from './screens/view-event/index'
+import ReviewerProfile from './screens/reviewer/ReviewerProfile'
+import Cheer from './screens/cheer/Cheer'
+
+
 const MainStack = createDrawerNavigator(
     {
-        UserType: { screen: UserType },
+        UserType: { 
+            screen: UserType ,
+      
+        },
         SuccessPage: { screen: SuccessPage },
-        PaidEvent: { screen: PaidEvent },
+        PaidEvent: { 
+            screen: PaidEvent,
+
+         },
         Analytics: { screen: Analytics },
         Video: { screen: Video },
         ManagePayment: { screen: ManagePayment },
-        MyEvent: { screen: MyEvent },
+        MyEvent: { 
+            screen: MyEvent,
+         },
         EditEvent: { screen: EditEvent },
         PerformProfile: { screen: PerformProfile },
+        ReviewerProfile:{screen:ReviewerProfile},
         ViewEvent: { screen: ViewEvent },
         CreateEvent: { screen: CreateEvent },
         Profile: { screen: Profile },
@@ -58,22 +71,29 @@ const MainStack = createDrawerNavigator(
         Tickets: { screen: Tickets },
         GiftTicket: { screen: GiftTicket },
         BookEvent: { screen: BookEvent },
+        ReviewerProfile:{screen:ReviewerProfile},
         PurchaseCheer: { screen: PurchaseCheer },
         MyEarning: { screen: MyEarning },
         WithDrawEarning: {screen: WithDrawEarning},
+        Cheer:{screen:Cheer},
     },
+    
     {
         drawerWidth: Dimensions.deviceWidth * 0.8,
         contentComponent: Menu,
         defaultNavigationOptions: {
-            drawerLockMode: 'locked-open',
-
+            drawerLockMode: 'locked-closed',
         }
     }
 )
 
 const AuthStack = createStackNavigator(
     {
+<<<<<<< Updated upstream
+=======
+        
+        
+>>>>>>> Stashed changes
         SignUp: { screen: SignUp },
         Login: { screen: Login },
         ForgotPassword: { screen: ForgotPassword },
@@ -85,6 +105,7 @@ const AuthStack = createStackNavigator(
             }
         }
     }
+   
 
 )
 const RootStack = createSwitchNavigator(

@@ -25,8 +25,10 @@ const Screens = {
     WithDrawEarning:'WithDrawEarning',
     Video:'Video',
     ViewEvent:'ViewEvent',
+    ReviewerProfile:'ReviewerProfile',
     EditEvent:'EditEvent',
-    Analytics:'Analytics'
+    Analytics:'Analytics',
+    Cheer:'Cheer'
   }
   export default Screens
   

@@ -56,11 +56,27 @@ class ViewEvent extends React.Component {
                         <View style={styles.socialView}>
                             <Text style={styles.socialTitle}>SOCIAL SHARE</Text>
                             <View style={styles.socialIconView}>
-                                <Icon name='facebook-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.facebook)}/>
-                                <Icon name='google--with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.email)}/>
-                                <Icon name='linkedin-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.facebook)}/>
-                                <Icon name='twitter-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.twitter)}/>
-                                <Icon name='instagram-with-circle' type='Entypo' style={styles.socialIcon} onPress={() => this.redirect(this.state.UserInfo.instagram)}/>
+                                <Icon name='facebook-with-circle'
+                                 type='Entypo' style={styles.socialIcon} 
+                                 onPress={() => this.redirect(this.state.UserInfo.facebook)}
+                                 />
+                                <Icon name='google--with-circle'
+                                 type='Entypo' style={styles.socialIcon} 
+                                 onPress={() => this.redirect(this.state.UserInfo.email)}
+                                 />
+                                <Icon name='linkedin-with-circle' 
+                                type='Entypo' 
+                                style={styles.socialIcon} 
+                                onPress={() => this.redirect(this.state.UserInfo.facebook)}
+                                />
+                                <Icon name='twitter-with-circle' 
+                                type='Entypo' style={styles.socialIcon}
+                                 onPress={() => this.redirect(this.state.UserInfo.twitter)}
+                                 />
+                                <Icon name='instagram-with-circle'
+                                 type='Entypo' style={styles.socialIcon} 
+                                 onPress={() => this.redirect(this.state.UserInfo.instagram)}
+                                 />
                             </View>
 
                         </View>
@@ -97,7 +113,7 @@ class ViewEvent extends React.Component {
                         </View>
                         <View style={{ width: '50%', justifyContent: 'center', alignItems: 'center', backgroundColor: '#8885CE', padding: 10 }}>
                             <TouchableOpacity
-                                onPress={() => NavigationService.navigate(Screens.Video, { 'channelName': event.name, 'type': 'performer', 'eventID': event.id })}
+                                onPress={() => NavigationService.navigate(Screens.Video,{'item':event})}
                             >
                                 <Text style={{ color: 'white' }}>Live Stream</Text>
                             </TouchableOpacity>

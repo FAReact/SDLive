@@ -46,13 +46,12 @@ const styles = StyleSheet.create({
      },
      title:{
          fontSize:20,
-         fontFamily:'FlanklinGothic',
          color:Colors.grayTextColor,
          fontWeight:'bold'
      },
      subscribe:{
          fontSize:13,
-         fontFamily:'FlanklinGothic',
+        //  fontFamily:'FlanklinGothic',
          color:Colors.grayTextColor,
      }
      

@@ -21,6 +21,13 @@ const buttons=[
         path:'GiftTicket'
 
     },
+    {
+        title:"BUY CHEERS",
+        color:'#7D47B7',
+        path:'Cheer'
+
+    },
+  
 ]
 
 const CardContent = (item) =>{
@@ -51,8 +58,8 @@ const CardContent = (item) =>{
             </TouchableOpacity>
        
             <View style={{alignItems:'center'}}>
-                <Text style={styles.eventName}>10</Text>
-                <Text style={styles.eventTitle}>TICKETS</Text>
+                {/* <Text style={styles.eventName}>10</Text>
+                <Text style={styles.eventTitle}>TICKETS</Text> */}
                {
                    buttons.map(btnItem=>(
                     <TouchableOpacity

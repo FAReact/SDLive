@@ -20,6 +20,7 @@ const Images ={
     Jhone:require('../assets/images/john.png'),
     Concert:require('../assets/images/concert.png'),
     SuccessImage:require('../assets/images/success-icon.png'),
-    Clapping:require('../assets/images/Clapping.png')
+    Clapping:require('../assets/images/Clapping.png'),
+    Gift:require('../assets/images/gift.png')
 }
 export default Images;

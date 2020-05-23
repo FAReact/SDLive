@@ -12,26 +12,18 @@ const Follow = () =>{
             <View/>
             <View style={styles.concertView}>
              <Text style={styles.title}>231</Text>
-             <Text style={styles.subscribe}>CONCERTS</Text>
+             <Text style={styles.subscribe}>EVENTS ATTENDED</Text>
             </View>
          
         </View>
         <View style={styles.followArea}>
               <View style={styles.followView}>
               <Text style={styles.title}>231</Text>
-              <Text style={styles.subscribe}>FOLLOWERS</Text>
+              <Text style={styles.subscribe}>SUBSCRIBED</Text>
               </View>
-              <TouchableOpacity>
-                <View style={styles.starArea}>
-                    <Icon name="star" type="Entypo" style={{fontSize:22,color:'white'}}/>
-                </View>
-              </TouchableOpacity>
-           
         </View>
     </View>
-
     )
-    
 }
 
 export default Follow;

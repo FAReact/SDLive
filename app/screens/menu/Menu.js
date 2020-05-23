@@ -27,7 +27,7 @@ const menulist=[
     },
     {
         title:'PROFILE',
-        path:'Profile'
+        path:'ReviewerProfile'
     },
     {
         title:'PAYMENT SETTING',
