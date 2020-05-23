@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, { Component } from 'react';
-import { View, StyleSheet, NativeModules, ScrollView,FlatList, TextInput,Text, Image, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, StyleSheet, NativeModules, ScrollView,FlatList, TextInput,Text, Image, Dimensions, TouchableOpacity,SafeAreaView, ImageBackground } from 'react-native';
 import { RtcEngine, AgoraView } from 'react-native-agora';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import {Icon} from 'native-base';
@@ -10,11 +10,13 @@ import {Icon} from 'native-base';
 import NavigationService from '../../navigation/NavigationService'
 import Images from '../../constants/image'
 import styles from './styles'
-import {messages} from './data'
+import {messages,event} from './data'
 import LinearGradient from 'react-native-linear-gradient';
 import firebase from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 import requestCameraAndAudioPermission from '../../utils/permission'
+
+
 const { Agora } = NativeModules;                  //Define Agora object as a native module
 const db = firestore();
 const {
@@ -23,15 +25,8 @@ const {
   AudioScenarioDefault,
   Adaptative,
 } = Agora;                                        //Set defaults for Stream
-
-/**
- * performer type @hosted,@muti-user
- * user type @normal,@premium
- *
- */
-
 const ListItem=({_id, text, createdAt, name, avatar, sendTip})=>{
- 
+
   return (
     <View style={styles.messageBack}>
       <View key={_id} style={styles.messageInnerBack}> 
@@ -44,9 +39,6 @@ const ListItem=({_id, text, createdAt, name, avatar, sendTip})=>{
     </View>    
   )
 }
-
-
-
 class Video extends Component {
   constructor(props) {
     super(props);
@@ -59,12 +51,16 @@ class Video extends Component {
       peerIds: [],                                //Array for storing connected peers
       uid: Math.floor(Math.random() * 100),       //Generate a UID for local user
       appid: '93a35a04e47b4c09807a4a8358171faa',                    //Enter the App ID generated from the Agora Website
-      channelName:'Love',        //Channel Name for the current session
+      channelName:'Love',                         //Channel Name for the current session
       vidMute: false,                             //State variable for Video Mute
       audMute: false,                             //State variable for Audio Mute
       joinSucceed: false,  
       commit:'',
-      messages: messages, //State variable for storing success
+      Event:event,
+      messages: [], //State variable for storing success
+      perform_name:'',
+      performer_iamge:'',
+      item:this.props.navigation.getParam('item')
     };
     const config = {                            //Setting config of the app
       appid: this.state.appid,                  //App ID
@@ -82,6 +78,12 @@ class Video extends Component {
     RtcEngine.init(config);                     //Initialize the RTC engine
   }
   componentDidMount() {
+    const {item} = this.state
+    this.setState({
+      perform_name:item.name,
+      performer_iamge:item.image
+    })
+
     RtcEngine.on('userJoined', (data) => {
       const { peerIds } = this.state;             //Get currrent peer IDs
       if (peerIds.indexOf(data.uid) === -1) {     //If new user has joined
@@ -90,6 +92,8 @@ class Video extends Component {
         });
       }
     });
+
+
     RtcEngine.on('userOffline', (data) => {       //If user leaves
       this.setState({
         peerIds: this.state.peerIds.filter(uid => uid !== data.uid), //remove peer ID from state array
@@ -103,7 +107,7 @@ class Video extends Component {
     });
     RtcEngine.joinChannel(this.state.channelName, this.state.uid);  //Join Channel
     RtcEngine.enableAudio();    //Enable the audio
-   var groupRef = db.collection('groupChat').doc('JeYlHn6A0C8bpnhxkKjF').collection('performMsg').doc('XhSzjf9lSAjC5SOl6gkx');
+    var groupRef = db.collection('groupChat').doc('JeYlHn6A0C8bpnhxkKjF').collection('performMsg').doc('XhSzjf9lSAjC5SOl6gkx');
     var getDoc = groupRef.get()
       .then(doc => {
         if (!doc.exists) {
@@ -115,7 +119,6 @@ class Video extends Component {
       .catch(err => {
         console.log('Error getting document', err);
       });
-
   }
   /**
   * @name toggleAudio
@@ -168,10 +171,10 @@ class Video extends Component {
     const {messages, commit}=this.state
     if(!commit) return 
     const payload={
-         _id: new Date().getTime(),
+        _id: new Date().getTime(),
         text: commit,
         createdAt: new Date(),
-        name: 'React Native',
+        name: 'Biky',
         avatar: `https://placeimg.com/${messages.length+1}/${messages.length+1}/any`,
     }
     const type='performer'
@@ -198,15 +201,15 @@ class Video extends Component {
     NavigationService.goBack()
   }
   render() {
-  
+    const {perform_name} = this.state
     return (
-        <View 
+      <SafeAreaView
         style={{flex:1,backgroundColor:'#7D47B7'}}>
          <View style={{padding:15,width:'100%',positon:'abolute',backgroundColor:'#7D47B7',top:0,zIndex:1,justifyContent:'space-between',flexDirection:'row',alignItems:'center'}} >
            <View style={{flexDirection:'row'}}>
              <Image style={styles.profileImage} source={Images.ProfileImage}/>
              <View style={{marginLeft:10}}>
-                <Text style={styles.profileName}>Performer Name</Text>
+             <Text style={styles.profileName}>{perform_name}</Text>
                 <Text style={styles.profileDate}>01:07:25</Text>
               </View>
            </View>
@@ -259,7 +262,7 @@ class Video extends Component {
         }
         
          <View style={{position:'absolute',bottom:0,width:'100%',paddingHorizontal:10,height:350,flexDirection:'column',backgroundColor:'transparent'}}>
-         <FlatList     
+          <FlatList     
                inverted  
                horizontal={false}
                data={this.state.messages}             
@@ -299,7 +302,8 @@ class Video extends Component {
         autoStart={false}
         ref={ref => (this.explosion = ref)}
       />
-      </View>
+  
+      </SafeAreaView>
     );
   }
 }

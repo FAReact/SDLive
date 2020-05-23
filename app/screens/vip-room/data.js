@@ -59,10 +59,9 @@ export const messages=[
 }
 
 
-  export const event={
+  export const eventData={
     
-    performer:{
-        id:14,
+    event:{
         evnet_id:2,
         type:'multi-user',
         event_name:'Love'
