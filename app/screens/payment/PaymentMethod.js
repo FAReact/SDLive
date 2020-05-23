@@ -17,7 +17,7 @@ const PaymentMethod = ({navigation}) =>{
         <View style={styles.paymentContainer }>
             <Header title="PAYMENT METHOD" toggleDrawer={navigation.toggleDrawer}/>
             <View style={styles.paymentView}>
-                <Text style={styles.title}>Please Select Payment Method</Text>
+                <Text style={styles.title}>Please Select Your Payment Method</Text>
                 <View style={styles.payment}>
                     <TouchableOpacity
                       onPress={()=>NavigationService.navigate(Screens.ManagePayment)}

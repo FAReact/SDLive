@@ -26,12 +26,16 @@ const menulist=[
         path:'BookEvent'
     },
     {
-        title:'MY PROFILE',
+        title:'PROFILE',
         path:'Profile'
     },
     {
-        title:'PAYMENTS SETTINGS',
+        title:'PAYMENT SETTING',
         path:'PaymentMethod'
+    },
+    {
+        title:'SWITCH TO PERFORMER',
+        path:''
     },
     {
         title:'ABOUT',
@@ -54,19 +58,19 @@ const menuPerformlist=[
         path:'CreateEvent'
     },
     {
-        title:'MANAGE PROFILE',
+        title:'PROFILE',
         path:'Profile'
     },
     {
-        title:'MANAGE PAYMENTS',
+        title:'PAYMENT SETTING',
         path:'PaymentMethod'
     },
     {
-        title:'MY EARNING',
+        title:'MY EARNINGS',
         path:'MyEarning'
     },
     {
-        title:'SWITCH VIEWER',
+        title:'SWITCH TO VIEWERS',
         path:''
     },
     {
@@ -100,7 +104,7 @@ const Menu = (props)=>{
                <Image style={styles.imageLogo} source={Images.Logo}/>
             </View>
             <View style={styles.logoTitleArea}>
-              <Image style={styles.imageSDLive} source={Images.SDLive}/>
+              {/* <Image style={styles.imageSDLive} source={Images.SDLive}/> */}
               <Text style={styles.logoTitle}>{Texts.logoTitle}</Text>
             </View>
             <View style={styles.loginInfoArea}>

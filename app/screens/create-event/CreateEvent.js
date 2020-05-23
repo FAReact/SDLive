@@ -1,26 +1,26 @@
-import React from 'react'
-import axios from 'axios'
-
-import { connect } from 'react-redux'
+import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../../redux/action.js'
-import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, AsyncStorage } from 'react-native'
-import { Icon, Content } from 'native-base'
-import DatePicker from 'react-native-datepicker'
+import { ActionCreators } from '../../redux/action.js';
+import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
+import { Icon, Content } from 'native-base';
+import DatePicker from 'react-native-datepicker';
 import TimePicker from "react-native-24h-timepicker";
 import DocumentPicker from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-crop-picker';
 import LinearGradient from 'react-native-linear-gradient';
-import MultiCountryPicker from '../../components/MultiCountryPicker'
-import MultiCityPicker from '../../components/MultiCityPicker'
-import MultiInterest from '../../components/MultiInterest'
+import MultiCountryPicker from '../../components/MultiCountryPicker';
+import MultiCityPicker from '../../components/MultiCityPicker';
+import MultiInterest from '../../components/MultiInterest';
 import TextInputMask from 'react-native-text-input-mask';
-import MultiSelectedItem from '../../components/MultiSelectedItem'
-import MultiEventCategory from '../../components/MultiEventCategory'
-import Header from '../../components/Header'
-import Images from '../../constants/image'
-import styles from './styles'
-import { ENDPOINT_EVENT } from '../../api/Endpoint'
+import MultiSelectedItem from '../../components/MultiSelectedItem';
+import MultiEventCategory from '../../components/MultiEventCategory';
+import EventType from '../../components/EventType';
+import Header from '../../components/Header';
+import Images from '../../constants/image';
+import styles from './styles';
+import { ENDPOINT_EVENT } from '../../api/Endpoint';
 const createFormData = (body) => {
     const data = new FormData();
 
@@ -35,15 +35,15 @@ const createFormData = (body) => {
 const socials = [
     {
         title: 'Facebook',
-        path: 'http;//www.facebook.com/profilename'
+        path: 'http://www.facebook.com/profilename'
     },
     {
         title: 'Twitter',
-        path: 'http;//www.twiiter.com/profilename'
+        path: 'http://www.twiiter.com/profilename'
     },
     {
         title: 'Instagram',
-        path: 'http;//www.Instagram.com/profilename'
+        path: 'http://www.Instagram.com/profilename'
     }
 ]
 
@@ -56,13 +56,15 @@ class CreateEvent extends React.Component {
             description: '',
             time: '00:00',
             photo: null,
+            type: 'Hosted',
             categoryID: 1,
             tailer: null,
-            country: '',
+            countryID: 1,
             ticketNo: '',
             price: 0,
             token: '',
-            categories: []
+            categories: [],
+            countries:[]
         }
     }
 
@@ -72,7 +74,9 @@ class CreateEvent extends React.Component {
                 this.setState({ token: token });
             }
         });
-        this.setState({ categories: this.props.Data.data.categories })
+        this.setState({ categories: this.props.Data.data.categories });
+        this.setState({countries: this.props.Data.data.countries});
+            
     }
 
     openGallery = () => {
@@ -94,8 +98,11 @@ class CreateEvent extends React.Component {
     onGetCategoryID = (value) => {
         this.setState({ categoryID: Number(value) })
     }
-    onSetCountry = (value) => {
-        this.setState({ country: value })
+    onGetCountryID = (value) => {
+        this.setState({ countryID: Number(value) })
+    }
+    onSetType = (value) => {
+        this.setState({ type: value })
     }
     onSetDate = (value) => {
         this.setState({ date: value })
@@ -133,19 +140,21 @@ class CreateEvent extends React.Component {
 
     }
     createEvent = () => {
-        const { name, date, description, time, photo, categoryID, tailer, country, ticketNo, price, token } = this.state
+        const { name, date, description, type, time, photo, categoryID, tailer, countryID, ticketNo, price, token } = this.state
         const date_time = `${date} ${time}`
         let data = {
-            name,
+            name:name,
             category_id: categoryID,
-            description,
+            description:description,
             ticket_count: ticketNo,
             time: date_time,
-            price,
+            event_type:type,
+            price:price,
             image: photo,
-            tailer
+            tailer:tailer,
+            country_id: countryID
         }
-
+        console.log("Event Data",data)
         axios({
             url: ENDPOINT_EVENT,
             data: createFormData(data),
@@ -164,7 +173,7 @@ class CreateEvent extends React.Component {
             })
     }
     render() {
-        const { name, date, description, time, photo, categoryID, tailer, country, ticketNo, price, categories } = this.state
+        const { name, date, description, time, type, photo, tailer, countries, countryID, ticketNo, price, categories,categoryID } = this.state
         return (
             <View>
                 <Header title="CREATE EVENT" toggleDrawer={this.props.navigation.toggleDrawer} />
@@ -178,10 +187,17 @@ class CreateEvent extends React.Component {
                                     onChangeText={(name) => this.setState({ name: name })}
                                 />
                             </View>
+                            <View style={styles.profileMultiCityCountryView}>
+                                <View style={styles.profileCountryCity}>
+                                    <MultiEventCategory Data={categories} onGetCategoryID={(value) => this.onGetCategoryID(value)} />
+                                </View>
+                                <View style={styles.profileCountryCity}>
+                                    <EventType onSetType={value => onSetType(value)} />
+                                </View>
+                            </View>
                             <View style={styles.categoryView}>
                                 {/* <MultiInterest initData={this.props.Data.data} placeHolderTitle="Select Event Category" onInterest= {value=>this.onInterest(value)}/> */}
-                                <MultiEventCategory Data={categories} onGetCategoryID={(value) => this.onGetCategoryID(value)} />
-                            </View>
+                                </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <View style={styles.dateView}>
                                     <DatePicker
@@ -260,9 +276,9 @@ class CreateEvent extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.restrictView}>
-                                <Text style={styles.restrictTitle}>RESTRICT AUDIANCE TO FOLLOWING REGIONS</Text>
+                                <Text style={styles.restrictTitle}>RESTRICT AUDIENCE TO FOLLOWING REGIONS</Text>
                                 <View style={styles.bottomCountryBar}>
-                                    <MultiCountryPicker Color="black" onSetCountry={value => this.onSetCountry(value)} />
+                                <MultiCountryPicker Data={countries} onGetCountryID={(value) => this.onGetCountryID(value)} />
                                 </View>
                             </View>
 

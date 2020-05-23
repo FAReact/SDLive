@@ -25,6 +25,7 @@ const Screens = {
     WithDrawEarning:'WithDrawEarning',
     Video:'Video',
     ViewEvent:'ViewEvent',
+    ReviewerProfile:'ReviewerProfile',
     EditEvent:'EditEvent',
     Analytics:'Analytics'
   }

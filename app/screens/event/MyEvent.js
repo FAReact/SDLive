@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import isEqual from 'lodash/isEqual'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { ActionCreators } from '../../redux/action.js'
-import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, FlatList } from 'react-native'
-import { Icon } from 'native-base'
-import DatePicker from 'react-native-datepicker'
+import React, { useState } from 'react';
+import isEqual from 'lodash/isEqual';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../../redux/action.js';
+import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import { Icon } from 'native-base';
+import DatePicker from 'react-native-datepicker';
 import LinearGradient from 'react-native-linear-gradient';
-import Header from '../../components/Header'
-import NavigationService from '../../navigation/NavigationService'
-import Images from '../../constants/image'
-import styles from './styles'
-import { events } from './data.js'
-import Screens from '../../utils/screens'
-import { ENDPOINT } from '../../api/Endpoint'
+import Header from '../../components/Header';
+import NavigationService from '../../navigation/NavigationService';
+import Images from '../../constants/image';
+import Texts from '../../constants/texts.js';
+import styles from './styles';
+import { events } from './data.js';
+import Screens from '../../utils/screens';
+import { ENDPOINT } from '../../api/Endpoint';
+import { createEvent } from '../../redux/create/EventAction.js';
 
 const buttons = [
     {
@@ -39,12 +41,13 @@ const getTimeFromString = (time) => {
     return Time
 }
 
+
 const CardContent = ({ item, onDelectItem }) => {
 
 
     return (
         <View style={{ padding: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-
+            
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image source={item.image !== null ? { uri: `${ENDPOINT}/${item.image}` } : Images.Concert} style={{ width: 90, height: 90, borderRadius: 10 }} />
                 <View style={{ marginLeft: 10 }}>
@@ -120,12 +123,18 @@ class MyEvent extends React.Component {
         return (
             <View>
                 <Header title="MY EVENTS" toggleDrawer={this.props.navigation.toggleDrawer} />
+                <TouchableOpacity 
+                onPress={()=>NavigationService.navigate('CreateEvent')}>
+           
+                    <Text style={{paddingTop:10,color:'#FF0000',textAlign: 'center',fontSize:12, fontFamily:'FranklinGothic-Light'}}>+ Create New Event</Text>
+               
+                </TouchableOpacity>
                 <FlatList
                     horizontal={false}
                     data={this.props.Event}
                     style={styles.flatlistContainer}
                     keyExtractor={(item, index) => item.id}
-                    renderItem={({ item }) =>
+                    renderItem={({item}) =>
                         <CardContent
                             item={item}
                             onDelectItem={(id) => this.onDelectItem(item)}
@@ -133,8 +142,13 @@ class MyEvent extends React.Component {
 
                     }
                 />
+            
             </View>
+            
+            
+            
         )
+
     }
 
 }

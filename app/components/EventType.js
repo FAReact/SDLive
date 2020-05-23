@@ -3,20 +3,18 @@ import RNPickerSelect from 'react-native-picker-select';
 import {Icon} from 'native-base';
 import pickerSelectStyles from './styles/pickerSelectStyles';
  
-const MultiCityPicker = (props) => {
+const EventType = (props) => {
     return (
         <RNPickerSelect
-            onValueChange={(value) => props.onSetCity(value)}
+            onValueChange={(value) => props.onSetType(value)}
             placeholder={{
-                label: 'Select City',
+                label: 'Select Type',
                 value: null,
                 color: 'red',
               }}
             items={[
-                { label: 'London', value: 'London' },
-                { label: 'Manchester', value: 'Manchester' },
-                { label: 'New York', value: 'New York' },
-                { label: 'Paris', value: 'Paris' },
+                { label: 'Hosted', value: 'Hosted' },
+                { label: 'Multi-User', value: 'Multi-User' },
             ]}
             style={{
                 ...pickerSelectStyles,
@@ -35,4 +33,4 @@ const MultiCityPicker = (props) => {
     );
 };
 
-export default MultiCityPicker;
+export default EventType;

@@ -1,25 +1,25 @@
-import React, { useState ,useEffect} from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux'
+import React, { useState ,useEffect} from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../../redux/action.js'
+import { ActionCreators } from '../../redux/action.js';
 import { View, Text, ScrollView, Image, TouchableOpacity, TextInput, Platform, Modal } from 'react-native'
-import { Icon, Content } from 'native-base'
-import DatePicker from 'react-native-datepicker'
+import { Icon, Content } from 'native-base';
+import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-crop-picker';
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import MultiCountryPicker from '../../components/MultiCountryPicker'
-import MultiCityPicker from '../../components/MultiCityPicker'
-import MultiInterest from '../../components/MultiInterest'
-import Header from '../../components/Header'
-import Images from '../../constants/image'
-import styles from './styles'
+import MultiCountryPicker from '../../components/MultiCountryPicker';
+import MultiCityPicker from '../../components/MultiCityPicker';
+import MultiInterest from '../../components/MultiInterest';
+import Header from '../../components/Header';
+import Images from '../../constants/image';
+import styles from './styles';
 import NavigationService from '../../navigation/NavigationService';
 import Screens from '../../utils/screens';
-import { ProfileURL } from '../../api/Endpoint'
-import { getItem } from '../../helpers/StorageHelper'
-import { ENDPOINT } from '../../api/Endpoint'
+import { ProfileURL } from '../../api/Endpoint';
+import { getItem } from '../../helpers/StorageHelper';
+import { ENDPOINT } from '../../api/Endpoint';
 
 
 const createFormData = (body) => {
@@ -48,6 +48,7 @@ const socials = [
     }
 ]
 
+
 const Profile = (props) => {
 
     const [name, setName] = useState(props.UserInfo.profile.user.name !==null?props.UserInfo.profile.user.name:'');
@@ -59,14 +60,14 @@ const Profile = (props) => {
     const [facebook, setFacebook] = useState(props.UserInfo.profile.user.facebook !==null?props.UserInfo.profile.user.facebook:'');
     const [twitter, setTwitter] = useState(props.UserInfo.profile.user.twitter !==null?props.UserInfo.profile.user.twitter:'');
     const [instagram, setInstagram] = useState(props.UserInfo.profile.user.instagram !==null?props.UserInfo.profile.user.instagram:'');
-    const [photo, setPhoto] = useState(null)
-    const [country, setCountry] = useState('');
-    const [city, setCity] = useState('')
-    const [banner, setBanner] = useState(null)
+    const [photo, setPhoto] = useState(null);
+    const [country, setCountry] = useState([]);
+    const [city, setCity] = useState('');
+    const [banner, setBanner] = useState(null);
     const [date, setDate] = useState(props.UserInfo.profile.user.birthday !==null?props.UserInfo.profile.user.birthday:'');
     const [avatar, setAvatar] = useState(null);
     const [modal, setModal] = useState(false);
-    
+
     
 
     const openGalleryForProfile = () => {
@@ -104,8 +105,9 @@ const Profile = (props) => {
         });
     }
 
-    const onSetCountry = (value) => {
-        setCountry(value);
+   
+   const onSetCountry = (value) => {
+        this.setCountry(value)
     }
     const onSetCity = (value) => {
         setCity(value);
@@ -122,16 +124,17 @@ const Profile = (props) => {
 
         let data = {
             name: name.trim(),
-            photo, email,
-            password,
+            photo:photo, 
+            email:email,
+            password:password,
             birthday: `${date}`,
-            country,
-            city,
-            bio,
+            country:country,
+            city:city,
+            bio:bio,
             interest: interest.length ? interest : null,
-            facebook,
-            twitter,
-            instagram,
+            facebook:facebook,
+            twitter:twitter,
+            instagram:instagram,
             profile_picture: banner
         }
 
@@ -222,8 +225,8 @@ const Profile = (props) => {
                         </View>
                         <View style={styles.profileMultiCityCountryView}>
                             <View style={styles.profileCountryCity}>
-                                <MultiCountryPicker onSetCountry={value => onSetCountry(value)} />
-                            </View>
+                            <MultiCityPicker onSetCountry={value => onSetCountry(value)} />
+                                 </View>
                             <View style={styles.profileCountryCity}>
                                 <MultiCityPicker onSetCity={value => onSetCity(value)} />
                             </View>
@@ -262,7 +265,7 @@ const Profile = (props) => {
 
                                         <TextInput
                                             style={{ color: 'gray', padding: 0 }}
-                                            placeholder="http;//www.facebook.com/profilename"
+                                            placeholder="http://www.facebook.com/profilename"
                                             onChangeText={value => setFacebook(value)}
                                         />
 
@@ -274,7 +277,7 @@ const Profile = (props) => {
                                     <Text style={{ color: 'gray', marginTop: 7 }}>Twitter</Text>
                                     <View style={{ borderBottomWidth: 1, marginLeft: 28, width: '80%' }}>
                                         <TextInput style={{ color: 'gray', padding: 0 }}
-                                            placeholder="http;//www.twiiter.com/profilename"
+                                            placeholder="http://www.twiiter.com/profilename"
                                             onChangeText={value => setTwitter(value)}
                                         />
 
@@ -285,7 +288,7 @@ const Profile = (props) => {
                                     <View style={{ borderBottomWidth: 1, marginLeft: 10, width: '80%' }}>
                                         <TextInput
                                             style={{ color: 'gray', padding: 0 }}
-                                            placeholder="http;//www.Instagram.com/profilename"
+                                            placeholder="http://www.Instagram.com/profilename"
                                             onChangeText={value => setInstagram(value)}
                                         />
 
@@ -296,7 +299,7 @@ const Profile = (props) => {
                             </View>
                         </View>
                         <View style={{ marginTop: 10 }}>
-                            <Text style={{ color: 'gray' }}>PEOFILE BANNER IMAGE</Text>
+                            <Text style={{ color: 'gray' }}>PROFILE BANNER IMAGE</Text>
                             <TouchableOpacity
                                 onPress={() => openGalleryForBanner()}
                             >

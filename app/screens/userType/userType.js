@@ -25,6 +25,7 @@ class UserType extends React.Component{
    
    onNavigate = (type) =>{  
         this.props.userType(type);
+      
         if(type ==='viewer'){
           
           NavigationService.navigate(Screens.PaidEvent) 
@@ -44,7 +45,7 @@ class UserType extends React.Component{
              <Image style={styles.imageLogo} source={Images.Logo}/>
           </View>
           <View style={styles.logoTitleArea}>
-            <Image style={styles.imageSDLive} source={Images.SDLive}/>
+            {/* <Image style={styles.imageSDLive} source={Images.SDLive}/> */}
             <Text style={styles.logoTitle}>Bringing live events home</Text>
           </View>
           <View style={styles.userTypeView}>

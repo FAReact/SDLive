@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import MultiSelect from 'react-native-multiple-select';
 
 class MultiInterest extends Component {
