@@ -36,3 +36,24 @@ export const sendTicketGift = (event_id,receiver_email,count) =>{
         .catch(reject)
     })
 }
+
+
+
+
+export const buyCheer = (package_id) =>{
+   
+    return new Promise((resolve,reject)=>{
+
+       wservice.buyCheer(package_id).then(response=>{
+        if (response.statusCode === 200) {
+            resolve(response.body)
+          
+        } else {
+            reject(response.body)
+        }
+       })
+       .catch(reject)
+
+    })
+
+}

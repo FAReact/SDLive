@@ -46,6 +46,11 @@ function WService() {
     return NetworkHelper.requestPost(this.makeUrl('/ticket/send_gift'),{event_id,receiver_email,count})
   }
 
+  WService.prototype.buyCheer = function(package_id){
+
+    return NetworkHelper.requestPost(this.makeUrl('/cheers/buy'),{package_id})
+  }
+
   WService.prototype.removeEvent = function(id){
     console.log("delete id")
     console.log(id)

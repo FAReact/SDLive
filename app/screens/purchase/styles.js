@@ -28,7 +28,7 @@ const styles =StyleSheet.create({
     eventName:{
        color:'#707070',
        fontFamily:'FranklinGothic',
-       fontSize:13
+       fontSize:14
     } ,
     price:{
       fontSize:16,
@@ -57,6 +57,7 @@ const styles =StyleSheet.create({
         backgroundColor:'white',
         borderRadius:20,
         padding:10,
+        paddingLeft: 15,
         borderWidth:1,
         marginTop:10,
         
