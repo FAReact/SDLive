@@ -159,6 +159,7 @@ const SignUp = (props) => {
           </View>
           <View style={styles.buttonView}>
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() => AppSignUp()}
             >
               <LinearGradient
@@ -175,6 +176,7 @@ const SignUp = (props) => {
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
             <Text style={styles.memberText}>Already a member?  Click here to </Text>
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() => NavigationService.navigate(Screens.Login)}
             >
               <Text style={styles.memberText}>Sign In</Text>
@@ -192,6 +194,7 @@ const SignUp = (props) => {
             </View>
 
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => goEventPage()}
               style={{ width: '100%', alignItems: 'center', marginTop: 20 }}
             >
