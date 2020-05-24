@@ -92,12 +92,13 @@ const Login = (props)=>{
                 </TouchableOpacity>
                 </View>
                <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',marginTop:10}}>
-                 <Text style={styles.description}>Want to start your Event?</Text>
+                 <Text style={styles.description}>Want to start your Event? </Text>
                  <TouchableOpacity 
                   onPress={()=>NavigationService.navigate(Screens.SignUp)}
                  >
-                 <Text style={styles.description}>Sign up, it is free!</Text>
+                 <Text style={styles.description}>Sign up</Text>
                  </TouchableOpacity>
+                 <Text style={styles.description}>, it is free!</Text>
                  </View> 
                
             </View> 
