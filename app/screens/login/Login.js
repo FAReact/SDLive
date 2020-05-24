@@ -44,6 +44,7 @@ const Login = (props)=>{
                   style={styles.textInput}
                   placeholder="Username"
                   textAlign="left"
+                  value={email}
                   onChangeText={(text)=>setLoginInfo({email:text, password})}
                   />
                    <ImageBackground
@@ -58,7 +59,7 @@ const Login = (props)=>{
                   placeholder="Password"
                   textAlign="left"
                   secureTextEntry={true}
-                 
+                  value={password}
                   onChangeText={(text)=>setLoginInfo({password:text, email})}
                   />
                    <ImageBackground
