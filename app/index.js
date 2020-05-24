@@ -37,6 +37,7 @@ import Analytics from './screens/analytics/Analytics'
 import EditEvent from './screens/edit-event/EditEvent'
 import ViewEvent from './screens/view-event/index'
 import ReviewerProfile from './screens/reviewer/ReviewerProfile'
+import About from './screens/about/index'
 const MainStack = createDrawerNavigator(
     {
         UserType: { 
@@ -71,6 +72,7 @@ const MainStack = createDrawerNavigator(
         PurchaseCheer: { screen: PurchaseCheer },
         MyEarning: { screen: MyEarning },
         WithDrawEarning: {screen: WithDrawEarning},
+        About: {screen: About},
     },
     
     {
