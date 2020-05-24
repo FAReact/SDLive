@@ -12,21 +12,22 @@ import styles from './styles';
 
 
 const validemail = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Uername should be email format.' : undefined
-    const [loginInfo,setLoginInfo]=useState({
-    })
-        email:'Jack@gmail.com',
-        password:'12345678'
-    const {email, password}=loginInfo
-    // console.log(props)
-  const AppLogin =()=>{
-    if (password === '' || email === '') return alert('Please confrim email and password!')
-    if (validemail(email.trim()) !== undefined) return alert(validemail(email))
-    if (password.length < 6) return alert('Must be at least min=6 characters')
-    if (password.length && password.length > 15) return alert('Must be max=15 characters or less.')
-    props.loginUser(email.trim(), password.trim());
+value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'Uername should be email format.' : undefined
+const Login = (props) => {
+const [loginInfo, setLoginInfo] = useState({
+  email: 'Jack@gmail.com',
+  password: '12345678'
+})
+const { email, password } = loginInfo
+// console.log(props)
+const AppLogin = () => {
+  if (password === '' || email === '') return alert('Please confrim email and password!')
+  if (validemail(email.trim()) !== undefined) return alert(validemail(email))
+  if (password.length < 6) return alert('Must be at least min=6 characters')
+  if (password.length && password.length > 15) return alert('Must be max=15 characters or less.')
+  props.loginUser(email.trim(), password.trim());
 
-  }
+}
   return (
     <ScrollView style={styles.container}>
       <View style={styles.loginContainer}>
@@ -107,7 +108,7 @@ const validemail = value =>
     </ScrollView>
 
   )
-}
+  }
 
 const mapStateToProps = ({ auth }) => {
   return {
