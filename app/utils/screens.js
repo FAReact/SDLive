@@ -27,8 +27,8 @@ const Screens = {
     ViewEvent:'ViewEvent',
     ReviewerProfile:'ReviewerProfile',
     EditEvent:'EditEvent',
+    About:'About'
     Analytics:'Analytics',
-    Cheer:'Cheer'
   }
   export default Screens
   

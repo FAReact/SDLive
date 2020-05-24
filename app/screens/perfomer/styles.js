@@ -32,30 +32,47 @@ const styles = StyleSheet.create({
          height:25,       
     },
     profileImage:{
-       width:Dimension.px50,
-       height:Dimension.px50,
-       borderRadius:Dimension.px25
+        width:Dimension.px100,
+        height:Dimension.px100,
+        borderRadius:Dimension.px50,
     },
     profileViewArea:{
-        width:'100%',
-        padding:Dimension.px15,
-        marginTop:Dimension.px60,
-        flexDirection:'row',
-        justifyContent:'flex-start',
+        marginTop:40,
+        justifyContent:'center',
         alignItems:'center'
-    },
-    profileInfoArea:{
-        marginLeft:Dimension.px10
-    },
-    profileName:{
-        fontSize:Dimension.px15,
-        fontWeight:'bold',
-        color:'white'
-    },
-    profileEmail:{
-       opacity:0.7,
-       color:'white',
-    },
+     },
+     profileInfoArea:{
+       alignItems:'center',
+       justifyContent:'center'
+     },
+     profileName:{
+         fontSize:Dimension.px15,
+         fontWeight:'bold',
+         color:'black'
+     },
+     profileEmail:{
+        color:Colors.grayTextColor,
+     },
+    // profileViewArea:{
+    //     width:'100%',
+    //     padding:Dimension.px15,
+    //     marginTop:Dimension.px60,
+    //     flexDirection:'row',
+    //     justifyContent:'flex-start',
+    //     alignItems:'center'
+    // },
+    // profileInfoArea:{
+    //     marginLeft:Dimension.px10
+    // },
+    // profileName:{
+    //     fontSize:Dimension.px15,
+    //     fontWeight:'bold',
+    //     color:'white'
+    // },
+    // profileEmail:{
+    //    opacity:0.7,
+    //    color:'white',
+    // },
 
     //card contents
     

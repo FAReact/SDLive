@@ -40,6 +40,7 @@ import ReviewerProfile from './screens/reviewer/ReviewerProfile'
 import Cheer from './screens/cheer/Cheer'
 
 
+import About from './screens/about/index'
 const MainStack = createDrawerNavigator(
     {
         UserType: { 
@@ -75,7 +76,6 @@ const MainStack = createDrawerNavigator(
         PurchaseCheer: { screen: PurchaseCheer },
         MyEarning: { screen: MyEarning },
         WithDrawEarning: {screen: WithDrawEarning},
-        Cheer:{screen:Cheer},
     },
     
     {

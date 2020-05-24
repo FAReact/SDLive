@@ -12,7 +12,6 @@ import NavigationService from '../../navigation/NavigationService';
 import Images from '../../constants/image';
 import Texts from '../../constants/texts.js';
 import styles from './styles';
-import { events } from './data.js';
 import Screens from '../../utils/screens';
 import { ENDPOINT } from '../../api/Endpoint';
 import { createEvent } from '../../redux/create/EventAction.js';
