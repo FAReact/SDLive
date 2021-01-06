@@ -20,7 +20,7 @@
     "@react-native-firebase/firestore": "^6.7.1",
     "@types/react": "^16.9.35",
     "@types/react-native": "^0.62.9",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "exponent": "^14.0.0",
     "moment": "^2.25.3",
     "native-base": "^2.13.12",
